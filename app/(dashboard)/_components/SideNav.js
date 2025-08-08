@@ -29,7 +29,7 @@ const SideNav = () => {
   return (
     <div className="shadow-sm border-r h-full ">
       <div className="p-5 border-b">
-        <Image src="/logo.svg" width={150} height={150} />
+        <Image src="/logo.svg" width={150} height={150} alt="Hello" />
       </div>
       <div className="flex flex-col float-left w-full gap-2 ">
         {menuList.map((item, index) => (

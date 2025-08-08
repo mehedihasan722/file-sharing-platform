@@ -7,7 +7,13 @@ const TopHeader = () => {
   return (
     <div className="flex p-5 border-b items-center justify-between md:justify-end gap-4">
       <AlignJustify className="md:hidden" />
-      <Image src="/logo.svg" width={150} height={150} className="md:hidden" />
+      <Image
+        src="/logo.svg"
+        width={150}
+        height={150}
+        className="md:hidden"
+        alt="blind"
+      />
       <UserButton />
     </div>
   );
