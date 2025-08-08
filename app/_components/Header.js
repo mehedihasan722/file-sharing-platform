@@ -1,3 +1,4 @@
+import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 import Image from "next/image";
 import React from "react";
 
@@ -48,10 +49,16 @@ const Header = () => {
           </nav>
 
           <div className="flex items-center gap-4">
+            <SignedIn>
+              <UserButton />
+            </SignedIn>
+            <SignedOut>
+              <SignInButton />
+            </SignedOut>
             <div className="sm:flex sm:gap-4">
               <a
                 className="block rounded-md bg-primary px-5 py-2.5 text-sm font-medium text-white transition hover:bg-teal-700 dark:hover:bg-blue-700"
-                href="#"
+                href="/files"
               >
                 Get Started
               </a>
