@@ -3,13 +3,12 @@ import React from "react";
 import AlertMsg from "./AlertMsg";
 import FilePreview from "./FilePreview";
 
-const UploadForm = () => {
+const UploadForm = ({ uploadBtnClick }) => {
   const [file, setFile] = React.useState(null);
   const [errormsg, setErrormsg] = React.useState(null);
 
   const onFileSelect = (event) => {
-    const selectedFile = event;
-    console.log(selectedFile);
+    const selectedFile = event.target.files[0]; // ✅ correct
     if (selectedFile && selectedFile.size >= 2 * 1024 * 1024) {
       setErrormsg("File size exceeds 2MB limit.");
       return;
@@ -17,6 +16,7 @@ const UploadForm = () => {
     setErrormsg(null);
     setFile(selectedFile);
   };
+
   return (
     <div className="text-center">
       <div className="flex items-center justify-center w-full">
@@ -53,10 +53,11 @@ const UploadForm = () => {
             id="dropzone-file"
             type="file"
             className="hidden"
-            onChange={(event) => onFileSelect(event.target.files[0])}
+            onChange={onFileSelect}
           />
         </label>
       </div>
+
       {errormsg ? <AlertMsg msg={errormsg} /> : null}
       {file ? (
         <FilePreview file={file} removeFile={() => setFile(null)} />
@@ -64,6 +65,7 @@ const UploadForm = () => {
       <button
         disabled={!file}
         className="p-2 bg-primary text-white w-[30%] rounded-full mt-5 disabled:bg-gray-500"
+        onClick={() => uploadBtnClick(file)}
       >
         Upload
       </button>
